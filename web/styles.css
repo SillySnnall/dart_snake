@@ -13,10 +13,6 @@ html, body {
   text-align: center;
 }
 
-/* #canvas {
-  border: 1px solid #ccc;
-} */
-
 #root-div{
   display: -webkit-flex; /* Safari */
   display: flex;

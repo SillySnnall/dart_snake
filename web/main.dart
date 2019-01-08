@@ -1,10 +1,10 @@
 import 'dart:html';
 import 'dart:math';
 import 'dart:async';
-import 'ai/AiSnake1.dart';
+import 'ai/AiSnake.dart';
 import 'bean/Position.dart';
 
-var foodSize = 8; // 食物大小40px
+var foodSize = 8; // 食物大小，单位px
 var snakeColor = '#f00'; // 蛇的颜色
 var snakeHeadColor = '#00f'; // 蛇头的颜色
 var currentFoodColor = '#0f0'; // 当前食物颜色
@@ -21,7 +21,7 @@ var speed = 0; // 蛇的速度（单位：毫秒）
 CanvasRenderingContext2D context2d; // 画布对象
 Timer timer; // 计时器
 
-var aiSnake1 = AiSnake1(); // AI
+var aiSnake = AiSnake(); // AI
 
 var modePlay = 0; // 玩法模式模式，0是我来玩，1是自己玩
 
@@ -120,7 +120,7 @@ void initData() {
  * 重置游戏
  */
 void reset() {
-  aiSnake1.startAI = false;
+  aiSnake.startAI = false;
   snakeDirection = null;
   currentFood = null;
   snakeList.clear();
@@ -137,7 +137,7 @@ void reset() {
 void startGame() {
   timer = Timer.periodic(Duration(milliseconds: speed), (Timer t) {
     if (modePlay == 1) {
-      var aiInit = aiSnake1.aiInit(snakeList, foodList, foodSize,
+      var aiInit = aiSnake.aiInit(snakeList, foodList, foodSize,
           snakeDirection, context2d.canvas.width);
       if (aiInit != null) snakeDirection = aiInit;
     }
@@ -367,15 +367,15 @@ void draw(color, grid) {
  * 画格子
  */
 void drawGrid() {
-  context2d.strokeStyle = "#ccc";
+  context2d.strokeStyle = "#ccc";// 画笔颜色
 
   // 画竖线
   for (var i = 0; i <= context2d.canvas.width; i += foodSize) {
-    context2d.beginPath();
-    context2d.moveTo(i, 0);
-    context2d.lineTo(i, context2d.canvas.height);
-    context2d.closePath();
-    context2d.stroke();
+    context2d.beginPath();// 路径开始
+    context2d.moveTo(i, 0);// 起始点
+    context2d.lineTo(i, context2d.canvas.height);// 画线的重点
+    context2d.closePath();// 路径结束
+    context2d.stroke();// 开始绘画
   }
   // 画横线
   for (var j = 0; j <= context2d.canvas.height; j += foodSize) {
