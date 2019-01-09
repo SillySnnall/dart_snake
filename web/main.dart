@@ -85,19 +85,19 @@ void initView() {
     speedBtn.onClick.listen((event) {
       switch (speedBtn.text) {
         case "1档":
-          speed = 0;
+          speed = 1000;
           break;
         case "2档":
-          speed = 250;
+          speed = 750;
           break;
         case "3档":
           speed = 500;
           break;
         case "4档":
-          speed = 750;
+          speed = 250;
           break;
         case "5档":
-          speed = 1000;
+          speed = 0;
           break;
       }
 
@@ -358,8 +358,8 @@ void initFoodData() {
  * 画
  */
 void draw(color, grid) {
-  context2d.fillStyle = color;
-  context2d.fillRect(grid.x, grid.y, foodSize, foodSize);
+  context2d.fillStyle = color;// 填充颜色
+  context2d.fillRect(grid.x, grid.y, foodSize, foodSize);// 填充
   drawGrid();
 }
 
